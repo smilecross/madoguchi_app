@@ -16,7 +16,7 @@ class ChatController extends Controller
     public function index()
     {
         $chats = Chat::getAllOrderByUpdated_at();
-        return response()->view('chat.index',compact('chats'));
+        return response()->view('family_page.chat.index',compact('chats'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ChatController extends Controller
      */
     public function create()
     {
-        return response()->view('chat.create');
+        return response()->view('family_page.chat.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class ChatController extends Controller
         // バリデーション:エラー
         if ($validator->fails()) {
             return redirect()
-            ->route('chat.create')
+            ->route('family_pay.chat.create')
             ->withInput()
             ->withErrors($validator);
         }
@@ -50,7 +50,7 @@ class ChatController extends Controller
         // $result = Chat::create($date);
           $result = Chat::create($request->all());
         // ルーティング「chat.index」にリクエスト送信（一覧ページに移動）
-        return redirect()->route('chat.index');
+        return redirect()->route('family_pay.chat.index');
         
     }
 
@@ -60,7 +60,7 @@ class ChatController extends Controller
     public function show($id)
     {
         $chat = Chat::find($id);
-        return response()->view('chat.show', compact('chat'));
+        return response()->view('family_pay.chat.show', compact('chat'));
     }
 
     /**
@@ -69,7 +69,7 @@ class ChatController extends Controller
     public function edit($id)
     {
         $chat = Chat::find($id);
-        return response()->view('chat.edit', compact('chat'));
+        return response()->view('family_pay.chat.edit', compact('chat'));
     }
 
     /**
@@ -91,7 +91,7 @@ class ChatController extends Controller
         }
         //データ更新処理
         $result = Chat::find($id)->update($request->all());
-        return redirect()->route('chat.index');
+        return redirect()->route('family_pay.chat.index');
     }
 
     /**
@@ -100,6 +100,6 @@ class ChatController extends Controller
     public function destroy($id)
     {
         $result = Chat::find($id)->delete();
-        return redirect()->route('chat.index');
+        return redirect()->route('family_pay.chat.index');
     }
 }

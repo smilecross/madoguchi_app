@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ProcedurePageController;
+use App\Http\Controllers\FamilyPageController;
 // use App\Http\Controllers\FavoriteController;
 
 /*
@@ -19,21 +21,34 @@ use App\Http\Controllers\ChatController;
 // Route::middleware(['web'])->resource('chat', ChatController::class);
 
 Route::middleware('auth')->group(function () {
-  Route::post('chat/{chat}/favorites', [FavoriteController::class, 'store'])->name('favorites');
-  Route::post('chat/{chat}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
-
-//   Route::get('/chat/mypage', [ChatController::class, 'mydata'])->name('chat.mypage');
-
-  Route::resource('chat', ChatController::class);
+  Route::resource('family_pages', FamilyPageController::class);
+  Route::resource('family_pages/chat', ChatController::class);
+  Route::resource('procedure_pages', ProcedurePageController::class);
+  
 });
-
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('family_pages', [FamilyPageController::class, 'index'])->name('family_pages.index');
+// Route::get('family_pages/create', [FamilyPageController::class, 'create'])->name('family_pages.create');
+
+Route::name('family_pages.chat.index')->get('family_pages/chat', [ChatController::class, 'index']);
+Route::name('family_pages.chat.create')->get('family_pages/chat/create', [ChatController::class, 'create']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+// 招待の受け入れ
+Route::get('invitation/accept/{token}', [App\Http\Controllers\InviteController::class, 'acceptInvitation'])->name('invitation.accept');
+
+// 招待メールの送信
+Route::get('/invite', function () {
+    return view('invite');
+})->name('invite');
+// Route::post('/send-invite',  [App\Http\Controllers\InviteController::class, 'sendInvitation'])->name('send.invite');
+Route::post('/send-invite', 'InviteController@sendInvitation')->name('send.invite');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
