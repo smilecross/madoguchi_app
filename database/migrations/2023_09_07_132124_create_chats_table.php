@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chats', function (Blueprint $table) {
-            $table->id();
-            $table->string('chat');
-            $table->text('description')->nullable();
-            $table->timestamps();
+        Schema::table('chats', function (Blueprint $table) {
+            $table->dropForeign('chat_procedure_page_id_foreign'); // 外部キー制約を削除
+            $table->dropColumn('chat_procedure_page_id'); // 列も削除
         });
+        // Schema::create('chats', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('chat');
+        //     $table->text('description')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**
