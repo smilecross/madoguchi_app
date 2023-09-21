@@ -16,4 +16,9 @@ class JobAdminInfo extends Model
     {
         return $this->hasOne(FamilyPage::class);
     }
+    public function occupation()
+    {
+        return $this->belongsTo(Occupation::class);
+    }
+
 }

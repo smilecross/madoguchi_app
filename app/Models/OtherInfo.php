@@ -16,4 +16,9 @@ class OtherInfo extends Model
     {
         return $this->hasOne(FamilyPage::class);
     }
+
+    public function willStatus()
+    {
+        return $this->belongsTo(WillStatus::class, 'will_status_id');
+    }
 }
