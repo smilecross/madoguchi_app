@@ -11,9 +11,9 @@ class Chat extends Model
     use HasFactory; 
                    // ,SoftDeletes;  SoftDeletes トレイトを使用する
     protected $guarded = [
-    'id',
-    'created_at',
-    'updated_at',
+        'id',
+        'created_at',
+        'updated_at',
     ];
     
     // protected $dates = ['deleted_at']; // deleted_at カラムを日付として扱う
@@ -29,11 +29,12 @@ class Chat extends Model
     // }
 
     public static function getAllOrderByUpdated_at()
-  {
-    return self::orderBy('updated_at', 'desc')->get();
-  }
+    {
+        return self::orderBy('updated_at', 'desc')->get();
+    }
+
     public function user()
-  {
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
 }
