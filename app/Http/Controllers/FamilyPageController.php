@@ -14,7 +14,7 @@ class FamilyPageController extends Controller
     }
     public function store(Request $request)
     {  
-         // リクエストデータのバリデーション（必要に応じて）
+    // リクエストデータのバリデーション（必要に応じて）
     $request->validate([
         'inheritor_name' => 'required|string|max:255',
         'deceased_date' => 'required|date',
@@ -26,7 +26,12 @@ class FamilyPageController extends Controller
     $familyPage->deceased_date = $request->input('deceased_date');
     $familyPage->save();
 
-    return redirect()->route('family_pages.index'); // 保存後のリダイレクト先
+        return redirect()->route('family_pages.index'); // 保存後のリダイレクト先
+    }
+
+    // 診断スタート
+    public function startDiagnosis() {
+        return view('diagnosis.start');
     }
 
 }

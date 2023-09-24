@@ -9,13 +9,13 @@
         
         <!-- 🔽 一覧ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('family_pages.chat.index')" :active="request()->routeIs('chat.index')">
+          <x-nav-link :href="route('family_pages.chat.index')" :active="request()->routeIs('family_pages.chat.index')">
             {{ __('Index') }}
           </x-nav-link>
         </div>
         <!-- 🔽 作成ページへのリンクを追加 -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('family_pages.chat.create')" :active="request()->routeIs('chat.create')">
+          <x-nav-link :href="route('family_pages.chat.create')" :active="request()->routeIs('family_pages.chat.create')">
             {{ __('Create') }}
           </x-nav-link>
         </div>
@@ -26,7 +26,7 @@
 <div class="container">
     <h1>手続き</h1>
     <br>
-    <a href="{{ route('family_pages.index') }}" class="btn btn-primary mb-3">必要な手続きを調べる</a>
+    <a href="{{ route('family_pages.diagnosis.start') }}" class="btn btn-primary mb-3">必要な手続きを調べる</a>
     <br>
     <a href="{{ route('invite') }}">招待する</a>
     @include('emails.invite_mail')
@@ -54,8 +54,8 @@
                 </tr>
             @endforeach
            {{-- {{ dd($family_pages) }}  --}}
-        </tbody>
-    </table> --}}
+        {{-- </tbody> --}}
+    {{-- </table>  --}}
 </div>
 @endsection
 
