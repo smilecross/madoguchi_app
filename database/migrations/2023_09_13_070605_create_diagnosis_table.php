@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('diagnosis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('family_id');  // family_pagesとの関連付けのための外部キー
+            $table->integer('age');  // 年齢を保存するカラム
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

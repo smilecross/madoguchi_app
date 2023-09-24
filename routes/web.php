@@ -19,41 +19,52 @@ use App\Http\Controllers\FamilyPageController;
 */
 
 // Route::middleware(['web'])->resource('chat', ChatController::class);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::middleware('auth')->group(function () {
   Route::resource('family_pages', FamilyPageController::class);
   Route::resource('family_pages/chat', ChatController::class);
   Route::resource('procedure_pages', ProcedurePageController::class);
-  
-});
-Route::get('/', function () {
-    return view('welcome');
-});
 
-// Route::get('family_pages', [FamilyPageController::class, 'index'])->name('family_pages.index');
-// Route::get('family_pages/create', [FamilyPageController::class, 'create'])->name('family_pages.create');
+  Route::name('family_pages.chat.index')->get('family_pages/chat', [ChatController::class, 'index']);
+  Route::name('family_pages.chat.create')->get('family_pages/chat/create', [ChatController::class, 'create']);
 
-Route::name('family_pages.chat.index')->get('family_pages/chat', [ChatController::class, 'index']);
-Route::name('family_pages.chat.create')->get('family_pages/chat/create', [ChatController::class, 'create']);
-
-Route::get('/dashboard', function () {
+  Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+  })->name('dashboard');
 
-// 招待の受け入れ
-Route::get('invitation/accept/{token}', [App\Http\Controllers\InviteController::class, 'acceptInvitation'])->name('invitation.accept');
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-// 招待メールの送信
-Route::get('/invite', function () {
-    return view('invite');
-})->name('invite');
-// Route::post('/send-invite',  [App\Http\Controllers\InviteController::class, 'sendInvitation'])->name('send.invite');
-Route::post('/send-invite', 'InviteController@sendInvitation')->name('send.invite');
+  Route::get('family_pages/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('family_pages.diagnosis.start');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+  // 質問ページへのルーティング
+  Route::get('/procedure/diagnosis/profile', 'DiagnosisController@profile')->name('diagnosis.profile');
+  Route::get('/procedure/diagnosis/job_admin', 'DiagnosisController@jobAdmin')->name('diagnosis.jobAdmin');
+  Route::get('/procedure/diagnosis/estate', 'DiagnosisController@estate')->name('diagnosis.estate');
+  Route::get('/procedure/diagnosis/financial', 'DiagnosisController@financial')->name('diagnosis.financial');
+  Route::get('/procedure/diagnosis/other', 'DiagnosisController@other')->name('diagnosis.other');
+
+  // 診断を実行するためのルーティング
+  Route::get('/diagnosis/start', [FamilyPagesController::class, 'startDiagnosis'])->name('diagnosis.start');
+
+  // 回答の保存のためのルーティング
+  Route::post('/procedure/diagnosis/store', 'DiagnosisController@store')->name('diagnosis.store');
 });
+
+  // 招待の受け入れ
+  Route::get('invitation/accept/{token}', [App\Http\Controllers\InviteController::class, 'acceptInvitation'])->name('invitation.accept');
+  
+  // 招待メールの送信
+  Route::get('/invite', function () {
+    return view('invite');
+  })->name('invite');
+
+  // Route::post('/send-invite',  [App\Http\Controllers\InviteController::class, 'sendInvitation'])->name('send.invite');
+  Route::post('/send-invite', 'InviteController@sendInvitation')->name('send.invite');
+
 
 require __DIR__.'/auth.php';
