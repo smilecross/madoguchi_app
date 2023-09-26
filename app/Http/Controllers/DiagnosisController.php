@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Diagnosis;
+
 
 class DiagnosisController extends Controller
 {
     public function profile()
     {
         return view('procedure.diagnosis.profile');
+        // return vew('diagnosis.start');
     }
 
     public function jobAdmin()

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProcedurePageController;
 use App\Http\Controllers\FamilyPageController;
+use App\Http\Controllers\DiagnosisController;
+
 // use App\Http\Controllers\FavoriteController;
 
 /*
@@ -42,6 +44,8 @@ Route::middleware('auth')->group(function () {
   Route::get('family_pages/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('family_pages.diagnosis.start');
 
   // 質問ページへのルーティング
+  Route::get('/procedure/diagnosis/profile', 'DiagnosisController@profile')->name('diagnosis.profile');
+  // Route::get('/diagnosis/start', 'DiagnosisController@profile')->name('diagnosis.start');
   Route::get('/procedure/diagnosis/profile', 'DiagnosisController@profile')->name('diagnosis.profile');
   Route::get('/procedure/diagnosis/job_admin', 'DiagnosisController@jobAdmin')->name('diagnosis.jobAdmin');
   Route::get('/procedure/diagnosis/estate', 'DiagnosisController@estate')->name('diagnosis.estate');
