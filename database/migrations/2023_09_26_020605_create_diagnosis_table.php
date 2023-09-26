@@ -17,6 +17,10 @@ return new class extends Migration
             $table->integer('age');  // 年齢を保存するカラム
             $table->timestamps();
             $table->softDeletes();
+
+            // ここで外部キー制約を追加することも考慮
+            // 例: $table->foreign('family_id')->references('id')->on('family_pages');
+            // 上記の外部キー制約はサンプル、適宜調整。
         });
     }
 
