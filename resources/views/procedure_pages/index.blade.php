@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-    <h1>手続きページ一覧</h1>
+    <h1>手続き一覧</h1>
 
     <a href="{{ route('procedure_pages.create') }}" class="btn btn-primary mb-3">新規作成</a>
 

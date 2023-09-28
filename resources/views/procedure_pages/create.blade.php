@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container">
-    <h1>手続きページを作成する</h1>
+    <h1>相続手続き専用ページを作成する</h1>
 
     
     <form action="{{ route('procedure_pages.store') }}" method="post">
@@ -19,7 +19,7 @@
             <input type="date" class="form-control" id="deceased_date" name="deceased_date" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">作成</button>
+        <button type="submit" class="btn btn-primary">作成する</button>
     </form>
 </div>
 @endsection
