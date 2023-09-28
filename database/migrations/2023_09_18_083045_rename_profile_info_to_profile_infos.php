@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::rename('profile_info', 'profile_infos');
+        if (Schema::hasTable('profile_info')) {
+            Schema::rename('profile_info', 'profile_infos');
+        }
     }
 
     /**
@@ -19,7 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::rename('profile_infos', 'profile_info');
+        if (Schema::hasTable('profile_infos')) {
+            Schema::rename('profile_infos', 'profile_info');
+        }
     }
 
  
