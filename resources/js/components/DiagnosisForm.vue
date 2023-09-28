@@ -194,7 +194,8 @@
         </div>
 
     </div>
-    <button @click="nextStep">次へ</button>
+    <button v-if="currentStep < 5" @click="nextStep">次へ</button>
+    <button v-else @click="showDiagnosisResults">やることリストを見る</button>
 
     <!-- 5ページ目終了後に表示するtodoリスト -->
     <div v-if="showResults">
@@ -211,6 +212,7 @@ export default {
   },
   data() {
     return {
+      showResults: false,
       currentStep: 1,
       today: new Date().toISOString().split('T')[0],
       showResults: false,
@@ -295,13 +297,11 @@ export default {
     nextStep() {
     if (this.currentStep < 5) { 
       this.currentStep++;
-    } else {
-      // すべてのページが完了した後の処理（例: データの送信や結果ページに遷移など）
-      this.showDiagnosisResults();
-    }
+     } 
   },
     showDiagnosisResults() {
-      this.showResults = true;
+      window.location.href = "/diagnosis/results";
+      //this.showResults = true;
     // その他のmethods...
   }
   }
