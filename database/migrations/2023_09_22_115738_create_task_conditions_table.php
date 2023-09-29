@@ -11,18 +11,19 @@ class CreateTaskConditionsTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('task_conditions', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('task_id');
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->string('table_name');  // 質問があるテーブルの名前
-            $table->string('column_name'); // そのテーブル内の条件に関連するカラム名
-            $table->string('value');       // そのカラムに入っているべき値
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if (!Schema::hasTable('task_conditions')) {
+            Schema::create('task_conditions', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('task_id');
+                $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+                $table->string('table_name');  // 質問があるテーブルの名前
+                $table->string('column_name'); // そのテーブル内の条件に関連するカラム名
+                $table->string('value');       // そのカラムに入っているべき値
+                $table->timestamps();
+                $table->softDeletes();
+            });
     }
-
+}
     /**
      * Reverse the migrations.
      */
