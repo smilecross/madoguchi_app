@@ -11,12 +11,14 @@ class CreateFamilyPagesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('family_pages', function (Blueprint $table) {
-            $table->id();
-            $table->string('inheritor_name');
-            $table->date('deceased_date');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('family_pages')) {
+            Schema::create('family_pages', function (Blueprint $table) {
+                $table->id();
+                $table->string('inheritor_name');
+                $table->date('deceased_date');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

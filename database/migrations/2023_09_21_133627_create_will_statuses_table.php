@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('will_statuses')) {   
         Schema::create('will_statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('status_name');
-            $table->timestamps();
-        });
+                $table->id();
+                $table->string('status_name');
+                $table->timestamps();
+            });
     }
-
+}
     /**
      * Reverse the migrations.
      */
