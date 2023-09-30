@@ -298,12 +298,19 @@ export default {
     if (this.currentStep < 5) { 
       this.currentStep++;
      } 
-  },
+  }, 
+    // 診断のIDをどこかのデータ変数 (例: this.diagnosisId) に保存している前提
     showDiagnosisResults() {
-      window.location.href = "/diagnosis/results";
-      //this.showResults = true;
-    // その他のmethods...
-  }
-  }
+      axios.post('/procedure/diagnosis/store', this.answers)
+        .then(response => {
+        const id = response.data.id;
+        window.location.href = `/diagnosis/showResults/${id}`;
+      })
+      .catch(error => {
+        // 何らかのエラーハンドリング（例: consoleにエラーメッセージを表示）
+        console.error("Error occurred:", error);
+      });
+    }
+    }
 };
 </script>
