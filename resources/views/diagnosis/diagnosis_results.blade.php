@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>相続手続き診断の結果</title>
-</head>
-<body>
-    <h1>必要な相続手続き</h1>
-    <p>ここに診断結果を表示します。</p>
-</body>
-</html>
+@extends('layouts.app_simple')
+
+@section('content')
+<h1>診断結果に基づくタスク</h1>
+
+<ul>
+    @foreach($tasks as $task)
+        <li>{{ $task->task_name }}</li>
+    @endforeach
+</ul>
+@endsection
+

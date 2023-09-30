@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
   Route::get('/dashboard', function () {
       return view('dashboard');
   })->name('dashboard');
-
+  Route::get('diagnosis/showResults/{id}', 'DiagnosisController@showResults')->name('diagnosis.showResults');
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -54,7 +54,8 @@ Route::middleware('auth')->group(function () {
 
   // 診断を実行するためのルーティング
   Route::get('/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('diagnosis.start');
-  Route::get('/diagnosis/results', [DiagnosisController::class, 'showResults']);
+  //Route::get('/diagnosis/results', [DiagnosisController::class, 'showResults']);
+  
 
   // 回答の保存のためのルーティング
    Route::post('/procedure/diagnosis/store', [DiagnosisController::class, 'store'])->name('diagnosis.store');
