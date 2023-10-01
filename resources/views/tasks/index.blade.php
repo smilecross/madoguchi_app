@@ -1,16 +1,18 @@
-<div class="container mt-4">
-    <h2 class="mb-4">タスク一覧（{{ request()->route('location') }}）</h2>
+<x-app-layout>
+<div class="container mt-4 bg-gray-100">
+    <h2 class="mb-4">手続き一覧（{{request()->route('location') }}）</h2>
     
-    <form action="{{ route('manual-tasks.store') }}" method="POST">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4">
+    <form action="{{ route('manual-tasks.store') }}" method="POST" class="bg-white space-y-4 flex justify-center items-center min-h-screen">
         @csrf
         
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200 space-y-4 flex justify-center items-center min-h-screen">
             <thead>
                 <tr>
                     <th class="px-6 py-3 bg-gray-50"></th> <!-- チェックボックスのための列を追加 -->
-                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">タスク名</th>
-                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">締切日</th>
-                    <th class="px-6 py-3 bg-gray-50">操作</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">手続きの種類</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">期限</th>
+                    {{-- <th class="px-6 py-3 bg-gray-50">操作</th> --}}
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -32,4 +34,6 @@
         
         <button type="submit" class="mt-4">保存する</button>
     </form>
+    </div>
 </div>
+</x-app-layout>
