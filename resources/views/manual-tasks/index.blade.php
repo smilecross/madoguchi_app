@@ -7,8 +7,6 @@
         <ul>
             @foreach($tasks as $task)
                 <li>
-                    {{-- {{ dd($task) }} --}}
-                    {{-- {{ $task->task_name }} (期限: {{ $task->deadline_days }}) --}}
                     {{ $task->taskDetails->task_name }} (期限: {{ $task->taskDetails->deadline_days }})
  
                     <!-- 削除ボタンとその機能を組み込むためのフォーム -->
