@@ -26,8 +26,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('chats', function (Blueprint $table) {
-            $table->dropForeign(['family_page_id']);
+        // 外部キー制約の削除をスキップ
+        // $table->dropForeign(['family_page_id']);
+        if (Schema::hasColumn('chats', 'family_page_id')) {
             $table->dropColumn('family_page_id');
+        }
         });
     }
 };

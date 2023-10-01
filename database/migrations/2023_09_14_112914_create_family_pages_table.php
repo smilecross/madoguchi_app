@@ -25,7 +25,15 @@ class CreateFamilyPagesTable extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-        Schema::dropIfExists('family_pages');
-    }
-};
+{
+    Schema::table('financial_info_options', function (Blueprint $table) {
+        // 外部キー制約が存在するか確認
+        if (DB::getSchemaBuilder()->getColumnType('financial_info_options', 'family_page_id') == 'bigint') {
+            $table->dropForeign(['family_page_id']);
+        }
+    });
+    
+    // family_pagesテーブルを削除
+    Schema::dropIfExists('family_pages');
+}
+}

@@ -15,7 +15,13 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <a href="{{ route('tasks.filter', '市区町村役場など') }}" class="btn btn-primary">市町村役場</a>
+        <a href="{{ route('tasks.filter', '勤務先') }}" class="btn btn-primary">勤務先</a>
+        <a href="{{ route('tasks.filter', 'オンライン') }}" class="btn btn-primary">オンライン</a>
+        <a href="{{ route('tasks.filter', 'その他') }}" class="btn btn-primary">その他</a>
+        <a href="{{ route('manual-tasks.index') }}" class="btn btn-primary">手続き一覧</a>
+    </div>
     <div class="flex justify-center">
         <a href="{{ route('procedure_pages.index') }}">手続きページ一覧</a>
         <a href="{{ route('procedure_pages.create') }}">手続きページを作成</a>
