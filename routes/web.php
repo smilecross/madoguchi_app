@@ -7,6 +7,9 @@ use App\Http\Controllers\FamilyPageController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\InviteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ManualTaskController;
+
 
 // use App\Http\Controllers\FavoriteController;
 
@@ -41,8 +44,13 @@ Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
   Route::get('family_pages/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('family_pages.diagnosis.start');
+  Route::get('/tasks/{location}', [TaskController::class, 'filterByLocation'])->name('tasks.filter'); //簡易診断
+
+  // マニュアルタスク
+  Route::get('/manual-tasks', [ManualTaskController::class, 'index'])->name('manual-tasks.index');
+  Route::post('/manual-tasks', [ManualTaskController::class, 'store'])->name('manual-tasks.store');
+  Route::delete('/manual-tasks/{id}', [ManualTaskController::class, 'destroy'])->name('manual-tasks.destroy');
 
 
   // 質問ページへのルーティング
@@ -57,8 +65,8 @@ Route::middleware('auth')->group(function () {
   //Route::get('/diagnosis/results', [DiagnosisController::class, 'showResults']);
   
 
-  // 回答の保存のためのルーティング
-   Route::post('/procedure/diagnosis/store', [DiagnosisController::class, 'store'])->name('diagnosis.store');
+  // 回答の保存のためのルーティング 
+  Route::post('/procedure/diagnosis/store', [DiagnosisController::class, 'store'])->name('diagnosis.store');
 });
 
   // 招待の受け入れ

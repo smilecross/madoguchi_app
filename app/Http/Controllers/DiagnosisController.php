@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Diagnosis;
 use App\Models\Task;
 use App\Models\TaskCondition;
-
+use App\Models\ProfileInfo;
 
 class DiagnosisController extends Controller
 {
@@ -38,9 +38,9 @@ class DiagnosisController extends Controller
 
     public function store(Request $request)
     {
-        // ユーザーの回答や診断結果をデータベースに保存するロジック
-        $diagnosis = Diagnosis::create($request->all());
-        return response()->json(['id' => $diagnosis->id]);
+        // ユーザーの回答をprofile_infosテーブルに保存するロジック
+        $profileInfo = ProfileInfo::create($request->all());
+        return response()->json(['id' => $profileInfo->id]);
         // バリデーションやデータの整形を必要に応じて実施
     }
     
