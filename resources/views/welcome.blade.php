@@ -52,42 +52,44 @@
                     </div>
                 </div>
                 <div>
+
+                    
                 <!-- 新規登録ボタン -->
-                <button id="showRegisterForm">新規登録</button>
+                {{-- <button id="showRegisterForm">新規登録</button> --}}
 
                 <!-- 新規登録フォーム (初期状態では非表示) -->
-                <form id="registerForm" class="hidden" method="POST" action="{{ route('register') }}">
-                @csrf
+                {{-- <form id="registerForm" class="hidden" method="POST" action="{{ route('register') }}">
+                @csrf --}}
 
                 <!-- Name -->
-                <div>
+                {{-- <div>
                     <label for="name">Name:</label>
                     <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
                     @error('name')
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> --}}
 
                 <!-- Email Address -->
-                <div>
+                {{-- <div>
                     <label for="email">Email:</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
                     @error('email')
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> --}}
 
                 <!-- Password -->
-                <div>
+                {{-- <div>
                     <label for="password">Password:</label>
                     <input id="password" type="password" name="password" required autocomplete="new-password">
                     @error('password')
                     <span class="text-red-600">{{ $message }}</span>
                     @enderror
-                </div>
+                </div> --}}
 
                 <!-- Confirm Password -->
-                <div>
+                {{-- <div>
                     <label for="password_confirmation">Confirm Password:</label>
                     <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">
                     @error('password_confirmation')
@@ -99,26 +101,26 @@
                     <button type="submit">Register</button>
                 </div>
                 </form>
-                </div>
+                </div> --}}
                 <!-- ログインボタン -->
-                <div>
-                <button id="showLoginForm">ログイン</button>
+                {{-- <div>
+                <button id="showLoginForm">ログイン</button> --}}
 
                 <!-- ログインフォーム (初期状態では非表示) -->
-                <form id="loginForm" class="hidden" method="POST" action="{{ route('login') }}">
-                    @csrf
+                {{-- <form id="loginForm" class="hidden" method="POST" action="{{ route('login') }}">
+                    @csrf --}}
 
                     <!-- Email Address -->
-                    <div>
+                    {{-- <div>
                         <label for="email">Email:</label>
                         <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
                         @error('email')
                         <span class="text-red-600">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <!-- Password -->
-                    <div>
+                    {{-- <div>
                         <label for="password">Password:</label>
                         <input id="password" type="password" name="password" required autocomplete="current-password">
                         @error('password')
@@ -130,11 +132,11 @@
                         <button type="submit">Log In</button>
                     </div>
                     </form>
-                    </div>
+                    </div> --}}
                    
 
     <!-- 以下はスクリプト部分 -->
-    <script>
+    {{-- <script>
         document.getElementById('showRegisterForm').addEventListener('click', function() {
             document.getElementById('registerForm').classList.toggle('hidden');
         });
@@ -144,7 +146,7 @@
         document.getElementById('showLoginForm').addEventListener('click', function() {
             document.getElementById('loginForm').classList.toggle('hidden');
         });
-    </script>
+    </script> --}}
 
     <!-- 以前提供したスタイルを再度利用 -->
     <style>
