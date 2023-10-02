@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('financial_options', function (Blueprint $table) {
-            $table->timestamps(); // created_at と updated_at カラムを追加
-            $table->softDeletes(); // deleted_at カラムを追加
-        });
+        // Schema::table('financial_options', function (Blueprint $table) {
+        //     $table->timestamps(); // created_at と updated_at カラムを追加
+        //     $table->softDeletes(); // deleted_at カラムを追加
+        // });
     }
 
     /**
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('financial_options', function (Blueprint $table) {
-            $table->dropTimestamps(); // created_at と updated_at カラムを削除
-            $table->dropSoftDeletes(); // deleted_at カラムを削除
-        });
+        // Schema::table('financial_options', function (Blueprint $table) {
+        //     $table->dropTimestamps(); // created_at と updated_at カラムを削除
+        //     $table->dropSoftDeletes(); // deleted_at カラムを削除
+        // });
     }
 };

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-         if (!Schema::hasTable('conditions')) {   
-            Schema::create('conditions', function (Blueprint $table) {
-                $table->id();
-                $table->timestamps();
-            });
-    }
+    //      if (!Schema::hasTable('conditions')) {   
+    //         Schema::create('conditions', function (Blueprint $table) {
+    //             $table->id();
+    //             $table->timestamps();
+    //         });
+    // }
 }
 
     /**
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('conditions');
+        // Schema::dropIfExists('conditions');
     }
 };

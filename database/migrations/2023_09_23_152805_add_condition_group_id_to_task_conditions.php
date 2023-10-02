@@ -11,9 +11,9 @@ class AddConditionGroupIdToTaskConditions extends Migration
      */
     public function up(): void
     {
-        Schema::table('task_conditions', function (Blueprint $table) {
-            $table->unsignedBigInteger('condition_group_id')->nullable()->after('task_id');
-        });
+        // Schema::table('task_conditions', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('condition_group_id')->nullable()->after('task_id');
+        // });
     }
 
     /**
@@ -21,8 +21,8 @@ class AddConditionGroupIdToTaskConditions extends Migration
      */
     public function down(): void
     {
-        Schema::table('task_conditions', function (Blueprint $table) {
-            $table->dropColumn('condition_group_id');
-        });
+        // Schema::table('task_conditions', function (Blueprint $table) {
+        //     $table->dropColumn('condition_group_id');
+        // });
     }
 };

@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+     public function up(): void
     {
-        if (!Schema::hasTable('profile_infos')) {
-        Schema::create('profile_infos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    //     if (!Schema::hasTable('profile_infos')) {
+    //     Schema::create('profile_infos', function (Blueprint $table) {
+    //         $table->id();
+    //         $table->timestamps();
+    //     });
+    // }
     }
-}
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('profile_infos');
+        // Schema::dropIfExists('profile_infos');
     }
 };

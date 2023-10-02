@@ -11,17 +11,17 @@ class AddDeletedAtToTables extends Migration
      */
     public function up()
     {
-        Schema::table('family_pages', function (Blueprint $table) {
-            $table->softDeletes();  // Adds deleted_at column
-        });
+        // Schema::table('family_pages', function (Blueprint $table) {
+        //     $table->softDeletes();  // Adds deleted_at column
+        // });
 
-        Schema::table('job_admin_infos', function (Blueprint $table) {
-            $table->softDeletes();
-        });
+        // Schema::table('job_admin_infos', function (Blueprint $table) {
+        //     $table->softDeletes();
+        // });
 
-        Schema::table('financial_infos', function (Blueprint $table) {
-            $table->softDeletes();
-        });
+        // Schema::table('financial_infos', function (Blueprint $table) {
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -29,16 +29,16 @@ class AddDeletedAtToTables extends Migration
      */
     public function down()
     {
-        Schema::table('family_pages', function (Blueprint $table) {
-            $table->dropSoftDeletes();  // Removes deleted_at column
-        });
+        // Schema::table('family_pages', function (Blueprint $table) {
+        //     $table->dropSoftDeletes();  // Removes deleted_at column
+        // });
 
-        Schema::table('job_admin_infos', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        // Schema::table('job_admin_infos', function (Blueprint $table) {
+        //     $table->dropSoftDeletes();
+        // });
 
-        Schema::table('financial_infos', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        // Schema::table('financial_infos', function (Blueprint $table) {
+        //     $table->dropSoftDeletes();
+        // });
     }
 };

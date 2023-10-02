@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('estate_infos')) {
-            Schema::create('estate_infos', function (Blueprint $table) {
-                $table->id();
-                $table->timestamps();
-            });
+        // if (!Schema::hasTable('estate_infos')) {
+        //     Schema::create('estate_infos', function (Blueprint $table) {
+        //         $table->id();
+        //         $table->timestamps();
+        //     });
     }
-}
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('estate_infos');
+        // Schema::dropIfExists('estate_infos');
     }
 };

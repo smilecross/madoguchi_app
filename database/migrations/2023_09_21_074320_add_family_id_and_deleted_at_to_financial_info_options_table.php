@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('financial_info_options', function (Blueprint $table) {
-            $table->unsignedBigInteger('family_id')->after('id');
-            $table->foreign('family_id')->references('id')->on('family_pages');
-            $table->softDeletes();  // deleted_at カラムを追加
-        });
+        // Schema::table('financial_info_options', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('family_id')->after('id');
+        //     $table->foreign('family_id')->references('id')->on('family_pages');
+        //     $table->softDeletes();  // deleted_at カラムを追加
+        // });
     }
 
     /**
@@ -23,10 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('financial_info_options', function (Blueprint $table) {
-            $table->dropForeign(['family_id']);
-            $table->dropColumn('family_id');
-            $table->dropSoftDeletes(); // deleted_at カラムを削除
-        });
+        // Schema::table('financial_info_options', function (Blueprint $table) {
+        //     $table->dropForeign(['family_id']);
+        //     $table->dropColumn('family_id');
+        //     $table->dropSoftDeletes(); // deleted_at カラムを削除
+        // });
     }
 };
