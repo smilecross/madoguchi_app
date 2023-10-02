@@ -32,7 +32,7 @@
         </table>
         </div>
         <div class="text-center mt-4">
-            <button type="submit" class="mt-4 text-center mx-auto bg-amber-100 rounded">保存する</button>
+            <button type="submit" class="mt-4 text-center mx-auto bg-amber-100 rounded">保存</button>
         
         </div>
     </form>
