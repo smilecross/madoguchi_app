@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('TOP') }}
+            {{ __('マイページ') }}
         </h2>
     </x-slot>
 
@@ -9,24 +9,24 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-4">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    {{ __("相続の手続きは全部で数十にも及びます。モレなく効率よく進めていきましょう。") }}
                 </div>
             </div>
         </div>
     </div>
     {{-- ここからボタン --}}
-    <div class="mt-8 px-4">
+    <div class="mt-8 px-8">
         <div class="grid grid-cols-1 max-w-7xl mx-auto sm:px-6 md:grid-cols-3 gap-6 lg:gap-8">
             <div  class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                 <div>
-            <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
+            <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full"> --}}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                 </svg>
             </div>
                 <a href="{{ route('tasks.filter', '市区町村役場など') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white ">市町村役場での手続き</a>
                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel has wonderful documentation 
+                亡くなられた方がお住まいだった市区町村役場で行うお手続き 
                 </p>
             </div>
         </div>            
@@ -40,7 +40,7 @@
                     </div>
                     <a href="{{ route('tasks.filter', '勤務先') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white ">勤務先での手続き</a>
                     <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                    Laracasts offers thousands of video
+                    亡くなられた方の勤務先で行うお手続き
                     </p>
                 </div>
         </div>
@@ -54,7 +54,7 @@
                         </div>
                         <a href="{{ route('tasks.filter', 'オンライン') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white">オンライン</a>
                         <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel News is a community driven portal
+                        オンラインで手続きできるサービス（一部）
                         </p>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         </div>
                         <a href="{{ route('tasks.filter', 'その他') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white">その他</a>
                         <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel's robust library o
+                        サービス提供会社で行うお手続き（一部）
                         </p>
                     </div>
                 </div>
@@ -82,12 +82,12 @@
                         </div>
                             <a href="{{ route('manual-tasks.index') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white">手続き一覧</a>
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel's robust library o
+                            市町村役場、勤務先、オンライン、その他で選んだ手続きを一覧で見ることができます。 
                             </p>
                     </div>
                 </div>
 
-                <div class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                <div class="scale-100 p-6  bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                     <div>
                         <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
@@ -96,19 +96,13 @@
                         </div>
                             <a href="{{ route('procedure_pages.create') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white">手続きページを作成</a>
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel's robust library o
+                            ただいま準備中！どのような手続きが必要か細かく診断することができます。（有料）
                         </p>
                     </div>
                 </div>
 
                     </div>
                 </div>
-
-
-    {{-- <div class="flex justify-center">
-        <a href="{{ route('procedure_pages.index') }}">手続きページ一覧</a>
-        <a href="{{ route('procedure_pages.create') }}">手続きページを作成</a>
-    </div> --}}
 
 </x-app-layout>
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\ManualTask; 
 use Illuminate\Http\Request;
@@ -37,5 +38,17 @@ class ManualTaskController extends Controller
         return redirect()->route('manual-tasks.index')->with('status', '手続きを削除しました。');
     }
 
-    
+    public function destroyAll()
+    {
+        Log::info('DestroyAll method called'); // メソッドが呼び出されたことをログに記録
+        
+        // 例：DBのtasksテーブルから全てのレコードを削除
+        // ManualTask::truncate(); // このコードは、実際のテーブル名やモデル名に基づいて適切に変更してください。
+        ManualTask::query()->delete();
+        Log::info('Truncate method executed'); // Truncateが実行されたことをログに記録
+        
+        // 削除後、適切なページにリダイレクトする（ここでは例としてトップページにリダイレクトしています）
+        return redirect()->route('dashboard')->with('success', '全てのタスクを削除しました。');
+    }
+
 }
