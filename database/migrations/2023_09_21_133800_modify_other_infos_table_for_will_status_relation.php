@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('will_statuses', function (Blueprint $table) {
-            $table->id();
-            $table->string('status_name');
-            $table->timestamps();
-            $table->softDeletes(); 
-        });
+        // Schema::create('will_statuses', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('status_name');
+        //     $table->timestamps();
+        //     $table->softDeletes(); 
+        // });
     }
 
     /**
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('will_statuses');
+        // Schema::dropIfExists('will_statuses');
     }
 };

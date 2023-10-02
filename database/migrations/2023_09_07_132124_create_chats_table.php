@@ -13,16 +13,16 @@ class CreateChatsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('chats')) {
-            Schema::create('chats', function (Blueprint $table) {
-                $table->id();
-                $table->unsignedBigInteger('user_id');
-                $table->text('message');
-                $table->timestamps();
+        // if (!Schema::hasTable('chats')) {
+        //     Schema::create('chats', function (Blueprint $table) {
+        //         $table->id();
+        //         $table->unsignedBigInteger('user_id');
+        //         $table->text('message');
+        //         $table->timestamps();
                 
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            });
-        }
+        //         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //     });
+        // }
     }
 
     /**
@@ -32,6 +32,6 @@ class CreateChatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chats');
+        // Schema::dropIfExists('chats');
     }
 };
