@@ -24,7 +24,7 @@
                     @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">マイページ</a>
                     @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">ログイン</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">新規登録</a>
@@ -33,27 +33,25 @@
                 </div>
             @endif
 
-            
-                <div class="py-12">
-                    <div class="max-w-7xl mx-auto w-1/2 sm:px-6 lg:px-8 px-4 ">
-                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                            <div class="p-6 text-gray-900">
-                                <p class="mt-4 text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
-                                    「かぞくの窓口」は、ご身内を亡くされた遺族の方が相続手続きを行うためのサポートツールです。
-                                    <br>
-                                    <br>
-                                    私たちの人生で身内の死や相続の手続きは何度も経験することではありません。そのため、多くの複雑な手続きや決断が、家族との絆を試すことも少なくありません。
-                                    <br>
-                                    <br>
-                                    さまざまな手続きを通して、家族と過ごした”あの時”の思い出を、時にはチャットで、時には食事を共にしながら、懐かしく語り合う機会になればと思っています。
-                                </p>
-                            </div>
+        
+                <div class="bg-white p-6 rounded-lg"> <!-- 説明部分の背景を白にし、少し余白を追加 -->
+                    <div>
+                        <div class="text-center mb-12">
+                            <p>相続手続きを家族で</p>
+                            <p class="font-bold text-3xl">かぞくの窓口</p>
                         </div>
-                    </div>
-                </div>
-                <div>
-
-                    
+                        <br>
+                        <div>
+                        <p>「かぞくの窓口」は、ご身内を亡くされた遺族の方が相続手続きを行うためのサポートツールです。
+                        <br>
+                        <br>
+                        私たちの人生で身内の死や相続の手続きは何度も経験することではありません。そのため、多くの複雑な手続きや決断が、家族との絆を試すことも少なくありません。
+                        <br>
+                        <br>
+                        さまざまな手続きを通して、家族と過ごした”あの時”の思い出を、時にはチャットで、時には食事を共にしながら、懐かしく語り合う機会になればと思っています。</p>
+                        </div>
+                    </div>    
+                </div>   
                 <!-- 新規登録ボタン -->
                 {{-- <button id="showRegisterForm">新規登録</button> --}}
 
