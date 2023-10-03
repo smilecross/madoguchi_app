@@ -30,8 +30,8 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="space-y-4 flex justify-center items-center min-h-screen">
-            <a href="{{ route('dashboard') }}" class="mt-4  text-center mx-auto bg-amber-100 px-4 py-2 rounded">マイページに戻る</a>
+        <div class="flex justify-center">
+            <a href="{{ route('dashboard') }}" class="mt-4 mb-4 text-center bg-amber-100 px-4 py-2 rounded">マイページに戻る</a>
         </div>
         <!-- 全て削除するボタンを設置 -->
         {{-- <form action="{{ route('manual-tasks.destroyAll') }}" method="POST" onsubmit="return confirm('本当に全て削除しますか？');">
