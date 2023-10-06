@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('invitations', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->unsignedBigInteger('family_page_id');
-        //     $table->unsignedBigInteger('inviter_id');
-        //     $table->string('invitee_email');
-        //     $table->string('token')->unique();
-        //     $table->enum('status', ['unread', 'read', 'joined', 'expired']);
-        //     $table->timestamp('expires_at')->nullable();
-        //     $table->timestamps();
+        Schema::create('invitations', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('family_page_id');
+            $table->unsignedBigInteger('inviter_id');
+            $table->string('invitee_email');
+            $table->string('token')->unique();
+            $table->enum('status', ['unread', 'read', 'joined', 'expired']);
+            $table->timestamp('expires_at')->nullable();
+            $table->timestamps();
 
-        //     $table->foreign('family_page_id')->references('id')->on('family_pages')->onDelete('cascade');
-        //     $table->foreign('inviter_id')->references('id')->on('users')->onDelete('cascade');
-        // });
+            $table->foreign('family_page_id')->references('id')->on('family_pages')->onDelete('cascade');
+            $table->foreign('inviter_id')->references('id')->on('users')->onDelete('cascade');
+        });
 
     }
 

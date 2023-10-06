@@ -22,8 +22,9 @@ return new class extends Migration
                 // ここで外部キー制約を追加することも考慮
                 // 例: $table->foreign('family_id')->references('id')->on('family_pages');
                 // 上記の外部キー制約はサンプル、適宜調整。
-            // });
-    }
+    //         });
+    // }
+}
 
     /**
      * Reverse the migrations.
