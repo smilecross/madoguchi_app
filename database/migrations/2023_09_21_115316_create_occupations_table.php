@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('occupations')) {
-            Schema::create('occupations', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');  // 職業の名前
-                $table->timestamps();
-                $table->softDeletes(); // deleted_at カラムを追加
-            });
-        }
+        // if (!Schema::hasTable('occupations')) {
+        //     Schema::create('occupations', function (Blueprint $table) {
+        //         $table->id();
+        //         $table->string('name');  // 職業の名前
+        //         $table->timestamps();
+        //         $table->softDeletes(); // deleted_at カラムを追加
+        //     });
+        // }
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('occupations');
+        // Schema::dropIfExists('occupations');
     }
 };

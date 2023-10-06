@@ -17,8 +17,8 @@ return new class extends Migration
         //         $table->string('status_name');
         //         $table->timestamps();
         //     });
+        // }
     }
-
     /**
      * Reverse the migrations.
      */
@@ -26,4 +26,4 @@ return new class extends Migration
     {
         // Schema::dropIfExists('will_statuses');
     }
-};
+    };

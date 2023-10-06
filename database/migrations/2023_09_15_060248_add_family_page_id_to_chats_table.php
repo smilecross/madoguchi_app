@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-    //     Schema::table('chats', function (Blueprint $table) {
-    //     if (!Schema::hasColumn('chats', 'family_page_id')) {
-    //         $table->unsignedBigInteger('family_page_id')->nullable()->after('user_id');
-    //         $table->foreign('family_page_id')->references('id')->on('family_pages')->onDelete('cascade');
-    //     }
-    // });
+        Schema::table('chats', function (Blueprint $table) {
+        if (!Schema::hasColumn('chats', 'family_page_id')) {
+            $table->unsignedBigInteger('family_page_id')->nullable()->after('user_id');
+            $table->foreign('family_page_id')->references('id')->on('family_pages')->onDelete('cascade');
+        }
+    });
  
     }
 
@@ -25,12 +25,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::table('chats', function (Blueprint $table) {
-        // // 外部キー制約の削除をスキップ
-        // // $table->dropForeign(['family_page_id']);
-        // if (Schema::hasColumn('chats', 'family_page_id')) {
-        //     $table->dropColumn('family_page_id');
-        // }
-        // });
+        Schema::table('chats', function (Blueprint $table) {
+        // 外部キー制約の削除をスキップ
+        // $table->dropForeign(['family_page_id']);
+        if (Schema::hasColumn('chats', 'family_page_id')) {
+            $table->dropColumn('family_page_id');
+        }
+        });
     }
 };

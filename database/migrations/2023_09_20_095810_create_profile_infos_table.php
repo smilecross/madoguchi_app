@@ -11,11 +11,11 @@ return new class extends Migration
      */
      public function up(): void
     {
-    //     if (!Schema::hasTable('profile_infos')) {
-    //     Schema::create('profile_infos', function (Blueprint $table) {
-    //         $table->id();
-    //         $table->timestamps();
-    //     });
+        // if (!Schema::hasTable('profile_infos')) {
+        // Schema::create('profile_infos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->timestamps();
+        // });
     // }
     }
     /**

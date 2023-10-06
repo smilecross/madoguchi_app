@@ -25,10 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::table('other_infos', function (Blueprint $table) {
-        //     $table->dropForeign(['will_status_id']);
-        //     $table->dropColumn('will_status_id');
-        //     $table->enum('will_status', [/* ここにenumの値を追加 */]);
-        // });
+    //     Schema::table('other_infos', function (Blueprint $table) {
+    //         $table->dropForeign(['will_status_id']);
+    //         $table->dropColumn('will_status_id');
+    //         $table->enum('will_status', [/* ここにenumの値を追加 */]);
+    //     });
     }
 };
