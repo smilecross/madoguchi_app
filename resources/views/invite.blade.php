@@ -15,9 +15,10 @@
     <div class="alert alert-danger">
         {{ session('error') }}
     </div>
-@endif
+    @endif
+    @if(session('family_page_id'))
+        <br>
+        <a href="{{ route('family_pages.show', session('family_page_id')) }}" class="btn btn-secondary">FamilyPageに戻る</a>
+    @endif
 </div>
 @endsection
-
-
-

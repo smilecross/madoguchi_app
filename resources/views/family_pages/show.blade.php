@@ -12,12 +12,15 @@
     
     <h2>操作メニュー</h2>
     <a href="{{ route('invite') }}">相続人を招待する</a>
-    {{-- <a href="{{ route('family_pages.diagnosis.start') }}" class="btn btn-primary mb-3">必要な手続きを調べる</a> --}}
+    <br>
+    <a href="{{ route('family_pages.diagnosis.start') }}" class="btn btn-primary mb-3">必要な手続きを調べる</a>
+    <br>
     
-    {{-- <a href="{{ route('family_pages.chat.index') }}">チャット</a> --}}
+    <a href="{{ route('family_pages.chat.index', ['family_page_id' => $familyPage->id]) }}">チャット</a>
+
     
     {{-- 他の情報や機能が追加される場合はこちらにコードを追記 --}}
     <br>
-    <a href="{{ route('family_pages.index') }}" class="btn btn-primary">手続きの一覧に戻る</a>
+    <a href="{{ route('dashboard') }}" class="btn btn-primary">マイページに戻る</a>
 </div>
 @endsection

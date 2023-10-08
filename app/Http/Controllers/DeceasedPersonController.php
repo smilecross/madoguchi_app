@@ -17,7 +17,7 @@ class DeceasedPersonController extends Controller
 
     public function create()
     {
-        return view('deceased_persons.create'); // 適切なビューファイルに変更してください
+        return view('deceased_persons.create');
     }
 
     public function store(Request $request)
@@ -28,23 +28,24 @@ class DeceasedPersonController extends Controller
             'death_date' => 'required|date',
         ]);
 
-    $deceasedPerson = new DeceasedPerson([
+        $deceasedPerson = new DeceasedPerson([
             'firstname' => $request->input('firstname'),
             'lastname' => $request->input('lastname'),
             'death_date' => $request->input('death_date'),
         ]);
 
-    $deceasedPerson->save();
-    // DeceasedPersonの作成後にFamilyPageも作成
+        $deceasedPerson->save();
+
+        // DeceasedPersonの作成後にFamilyPageも作成
         $familyPage = new FamilyPage();
         $familyPage->deceased_person_id = $deceasedPerson->id;
-    // 必要に応じて他のデータもセット
+        // 必要に応じて他のデータもセット
         $familyPage->save();
-    // 保存した FamilyPage の ID をセッションに保存
+
+        // 保存した FamilyPage の ID をセッションに保存
         session(['family_page_id' => $familyPage->id]);
 
         //手続きページの一覧画面へリダイレクト
         return redirect()->route('family_pages.show', $familyPage->id);
     }
-    
 }

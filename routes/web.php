@@ -31,20 +31,21 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-  Route::resource('deceased_persons', DeceasedPersonController::class); //相続手続きページ生成
-  Route::resource('family_pages', FamilyPageController::class);
+    Route::resource('deceased_persons', DeceasedPersonController::class); //相続手続きページ生成
+    Route::resource('family_pages', FamilyPageController::class);
+    
+    Route::name('family_pages.chat.index')->get('family_pages/{family_page_id}/chat', [ChatController::class, 'index']); //一覧
+    Route::name('family_pages.chat.store')->post('family_pages/{family_page_id}/chat', [ChatController::class, 'store']); //投稿
+    Route::name('family_pages.chat.destroy')->delete('family_pages/{family_page_id}/chat/{id}', [ChatController::class, 'destroy']);
   
-  Route::name('family_pages.chat.index')->get('family_pages/{family_page_id}/chat', [ChatController::class, 'index']); //一覧
-  Route::name('family_pages.chat.store')->post('family_pages/{family_page_id}/chat', [ChatController::class, 'store']); //投稿
-
-  Route::get('/dashboard', function () {
+Route::get('/dashboard', function () {
       return view('dashboard');
   })->name('dashboard');
-  // Route::get('diagnosis/showResults/{id}', 'DiagnosisController@showResults')->name('diagnosis.showResults');
+  Route::get('diagnosis/showResults/{id}', 'DiagnosisController@showResults')->name('diagnosis.showResults');
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-  // Route::get('family_pages/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('family_pages.diagnosis.start');
+  Route::get('family_pages/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('family_pages.diagnosis.start');
   Route::get('/tasks/{location}', [TaskController::class, 'filterByLocation'])->name('tasks.filter'); //簡易診断
 
   // マニュアルタスク
@@ -55,19 +56,19 @@ Route::middleware('auth')->group(function () {
 
 
   // 質問ページへのルーティング
-  // Route::get('/procedure/diagnosis/profile', [DiagnosisController::class, 'profile'])->name('diagnosis.profile');
-  // Route::get('/procedure/diagnosis/job_admin', [DiagnosisController::class, 'jobAdmin'])->name('diagnosis.jobAdmin');
-  // Route::get('/procedure/diagnosis/estate', [DiagnosisController::class, 'estate'])->name('diagnosis.estate');
-  // Route::get('/procedure/diagnosis/financial', [DiagnosisController::class, 'financial'])->name('diagnosis.financial');
-  // Route::get('/procedure/diagnosis/other', [DiagnosisController::class, 'other'])->name('diagnosis.other');
+  Route::get('/procedure/diagnosis/profile', [DiagnosisController::class, 'profile'])->name('diagnosis.profile');
+  Route::get('/procedure/diagnosis/job_admin', [DiagnosisController::class, 'jobAdmin'])->name('diagnosis.jobAdmin');
+  Route::get('/procedure/diagnosis/estate', [DiagnosisController::class, 'estate'])->name('diagnosis.estate');
+  Route::get('/procedure/diagnosis/financial', [DiagnosisController::class, 'financial'])->name('diagnosis.financial');
+  Route::get('/procedure/diagnosis/other', [DiagnosisController::class, 'other'])->name('diagnosis.other');
 
   // 診断を実行するためのルーティング
-  // Route::get('/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('diagnosis.start');
-  //Route::get('/diagnosis/results', [DiagnosisController::class, 'showResults']);
+  Route::get('/diagnosis/start', [FamilyPageController::class, 'startDiagnosis'])->name('diagnosis.start');
+  Route::get('/diagnosis/results', [DiagnosisController::class, 'showResults']);
   
 
   // 回答の保存のためのルーティング 
-  // Route::post('/procedure/diagnosis/store', [DiagnosisController::class, 'store'])->name('diagnosis.store');
+  Route::post('/procedure/diagnosis/store', [DiagnosisController::class, 'store'])->name('diagnosis.store');
 });
 
 
