@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\ProcedurePageController;
+use App\Http\Controllers\DeceasedPersonController;
 use App\Http\Controllers\FamilyPageController;
 use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\InviteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ManualTaskController;
+
 
 
 // use App\Http\Controllers\FavoriteController;
@@ -30,12 +31,11 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
+  Route::resource('deceased_persons', DeceasedPersonController::class); //相続手続きページ生成
   Route::resource('family_pages', FamilyPageController::class);
-  // Route::resource('family_pages/chat', ChatController::class);
-  Route::resource('procedure_pages', ProcedurePageController::class);
-
-  Route::name('family_pages.chat.index')->get('family_pages/chat', [ChatController::class, 'index']);
-  Route::name('family_pages.chat.create')->get('family_pages/chat/create', [ChatController::class, 'create']);
+  
+  Route::name('family_pages.chat.index')->get('family_pages/{family_page_id}/chat', [ChatController::class, 'index']); //一覧
+  Route::name('family_pages.chat.store')->post('family_pages/{family_page_id}/chat', [ChatController::class, 'store']); //投稿
 
   Route::get('/dashboard', function () {
       return view('dashboard');

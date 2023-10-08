@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\InvitationMail;
+use App\Models\Invite; 
 use App\Models\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,28 +12,36 @@ use Illuminate\Support\Str;
 
 class InviteController extends Controller
 {
-    // ... 既存のsendInvitation関数 ...
-
-    public function acceptInvitation($token)
+    public function sendInvitation(Request $request)
     {
-        // トークンを使用して招待を検索
-        $invitation = Invitation::where('token', $token)->first();
+        if(!session()->has('family_page_id')) {
+            return redirect()->back()->withErrors(['エラーが発生しました。再度お試しください。']);
+        }      
 
-        if (!$invitation) {
-            return redirect('/')->withErrors(['招待が見つかりません。']);
+        $request->validate(['email' => 'required|email']);
+
+        $existingInvite = Invite::where('email', $request->email)->first();
+        
+        if ($existingInvite) {
+            return redirect()->back()->with('error', 'このメールアドレスへの招待は既に送信されています。');
         }
 
-        // 既に招待が受け入れられたか、期限切れの場合はエラー
-        if ($invitation->status !== 'unread') {
-            return redirect('/')->withErrors(['この招待は既に受け入れられているか、期限切れです。']);
-        }
+        $invite = new Invite();
+        $invite->email = $request->email;
+        $invite->token = Str::random(32);
+        $invite->family_page_id = session('family_page_id', null);
+        $invite->save();
 
-        // ユーザーをログインさせる（もしくは登録する）ためのロジックを追加
-        // Auth::login($user); のようなコード
+        $inviteUrl = 'https://madoguchi.sakura.ne.jp/project/invitation/accept/' . $invite->token;
+        \Log::info('Generated Invite URL:', ['url' => $inviteUrl]);
+        $companyName = 'LifeMoneyTech かぞくの窓口';  
+        $inviter = Auth::user(); // これが招待を送った人
 
-        // 招待のステータスを更新
-        $invitation->update(['status' => 'joined']);
+        Mail::to($request->email)->send(new InvitationMail($inviteUrl, $inviter, $invite->family_page_id));
 
-        return redirect('/home')->with('success', '招待を受け入れました！');
+        return redirect()->back()->with('success', '招待を送信しました！');
     }
+
+
+
 }

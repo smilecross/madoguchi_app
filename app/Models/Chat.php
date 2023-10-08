@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Database\Eloquent\SoftDeletes; 論理削除を使う場合はコメントON
+use Illuminate\Database\Eloquent\SoftDeletes; 
 
 class Chat extends Model
 {
@@ -16,17 +16,6 @@ class Chat extends Model
         'updated_at',
     ];
     
-    // protected $dates = ['deleted_at']; // deleted_at カラムを日付として扱う
-
-    // public static function getAllOrderByUpdated_at()
-    // {
-    //     return self::orderBy('updated_at', 'desc')->get();
-    // }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
 
     public static function getAllOrderByUpdated_at()
     {
@@ -36,5 +25,10 @@ class Chat extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    // family_page とのリレーション
+    public function familyPage()
+    {
+        return $this->belongsTo(FamilyPage::class);
     }
 }

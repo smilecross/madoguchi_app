@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_simple')
 
 @section('content')
 <div class="container">
@@ -7,9 +7,17 @@
         @csrf
         <div class="form-group">
             <label for="email">招待したい方のメールアドレス</label>
-            <input type="email" name="email" class="form-control" required>
+            <input type="email" name="email" id='email' class="form-control" required>
         </div>
         <button type="submit" class="btn btn-primary">招待を送る</button>
     </form>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 </div>
 @endsection
+
+
+

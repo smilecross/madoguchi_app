@@ -13,6 +13,11 @@ class FamilyPage extends Model
 
     protected $casts = ['deceased_date' => 'date',];
 
+    public function deceasedPerson()
+    {
+        return $this->belongsTo(DeceasedPerson::class, 'deceased_person_id'); // 第2引数にはFamilyPageテーブルの外部キーカラム名を指定
+    }
+ 
     public function profileInfo()
     {
         return $this->hasOne(ProfileInfo::class);

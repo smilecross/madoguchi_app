@@ -34,4 +34,10 @@ class FamilyPageController extends Controller
         return view('diagnosis.start');
     }
 
+    public function show($id)
+    {
+        $familyPage = FamilyPage::findOrFail($id); // idに対応する手続きページを取得
+        return view('family_pages.show', ['familyPage' => $familyPage]);
+    }
+
 }

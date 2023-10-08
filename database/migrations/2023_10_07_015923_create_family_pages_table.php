@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->softDeletes();
+        Schema::create('family_pages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('deceased_person_id')->constrained()->onDelete('cascade');
+            $table->timestamps();   
+            $table->softDeletes('deleted_at'); 
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->softDeletes();
-        });
+        Schema::dropIfExists('family_pages');
     }
 };

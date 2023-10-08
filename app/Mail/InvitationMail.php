@@ -12,15 +12,22 @@ class InvitationMail extends Mailable
     use Queueable, SerializesModels;
 
     public $invite_url;
-    public $companyName;
+    public $inviter;         // 招待を送信したユーザーの情報
+    public $family_page_id;  // 招待に関連するファミリーページのID
 
     /**
      * Create a new message instance.
+     * 
+     * @param string $invite_url 招待URL
+     * @param User $inviter 招待を送信したユーザーの情報
+     * @param int $family_page_id 招待に関連するファミリーページのID
      */
-    public function __construct($invite_url, $companyName)
+    public function __construct($invite_url, $inviter, $family_page_id)
     {
-        $this->invite_url = $invite_url;
-        $this->companyName = $companyName;
+        $this->invite_url = 'https://madoguchi.sakura.ne.jp/project/invitation/accept/' ;
+        // $this->inviter = $inviter;
+        $this->family_page_id = $family_page_id;
+        $this->companyName = "LifeMoneyTech";
     }
 
     public function build()

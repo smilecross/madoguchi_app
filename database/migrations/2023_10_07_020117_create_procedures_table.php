@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // if (!Schema::hasTable('will_statuses')) {   
-        // Schema::create('will_statuses', function (Blueprint $table) {
-        //         $table->id();
-        //         $table->string('status_name');
-        //         $table->timestamps();
-        //     });
-        // }
+        Schema::create('procedures', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+        });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        // Schema::dropIfExists('will_statuses');
+        Schema::dropIfExists('procedures');
     }
-    };
+};

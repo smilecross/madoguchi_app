@@ -13,93 +13,76 @@ class ChatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($family_page_id)
     {
-        $chats = Chat::getAllOrderByUpdated_at();
-        return response()->view('family_page.chat.index',compact('chats'));
+        $chats = Chat::where('family_page_id', $family_page_id)->orderBy('updated_at', 'desc')->get();
+        return response()->view('family_page.chat.index', compact('chats'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return response()->view('family_page.chat.create');
-    }
+    
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $family_page_id)
     {
          // バリデーション
         $validator = Validator::make($request->all(), [
-            'chat' => 'required | max:191',
-            'description' => 'required',
+            'message' => 'required | max:191',
         ]);
+
         // バリデーション:エラー
         if ($validator->fails()) {
             return redirect()
-            ->route('family_pay.chat.create')
+            ->route('family_page.chat.create', ['family_page_id' => $family_page_id])
             ->withInput()
             ->withErrors($validator);
         }
-        // create()は最初から用意されている関数
-        // 戻り値は挿入されたレコードの情報
-        $data = $request->merge(['user_id' => Auth::user()->id])->all();
-        // $result = Chat::create($date);
-          $result = Chat::create($request->all());
-        // ルーティング「chat.index」にリクエスト送信（一覧ページに移動）
-        return redirect()->route('family_pay.chat.index');
-        
-    }
+       
+        // データのマージ
+          $data = $request->merge([
+            'user_id' => Auth::user()->id,
+            'family_page_id' => $family_page_id
+            ])->all();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        $chat = Chat::find($id);
-        return response()->view('family_pay.chat.show', compact('chat'));
-    }
+        //メッセージの保存
+          $result = Chat::create($data);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $chat = Chat::find($id);
-        return response()->view('family_pay.chat.edit', compact('chat'));
+        // ルーティング「chat.index」に
+        return redirect()->route('family_page.chat.index', ['family_page_id' => $family_page_id]);  
     }
-
+   
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $family_page_id, $id)
     {
         //バリデーション
         $validator = Validator::make($request->all(), [
-            'chat' => 'required | max:191',
-            'description' => 'required',
+            'message' => 'required | max:191',
         ]);
+
         //バリデーション:エラー
         if ($validator->fails()) {
             return redirect()
-            ->route('chat.edit', $id)
+            ->route('chat.edit', ['family_page_id' => $family_page_id, 'id' => $id])
             ->withInput()
             ->withErrors($validator);
         }
         //データ更新処理
         $result = Chat::find($id)->update($request->all());
-        return redirect()->route('family_pay.chat.index');
+        return redirect()->route('family_page.chat.index', ['family_page_id' => $family_page_id]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($family_page_id, $id)
     {
         $result = Chat::find($id)->delete();
-        return redirect()->route('family_pay.chat.index');
+        return redirect()->route('family_page.chat.index', ['family_page_id' => $family_page_id]);
     }
 }

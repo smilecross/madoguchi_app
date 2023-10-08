@@ -1,61 +1,45 @@
-<x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Chat Index') }}
-    </h2>
-  </x-slot>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <!-- (中略) -->
 
-  <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
-      <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white dark:bg-gray-800 border-b border-grey-200 dark:border-gray-800">
-          <table class="text-center w-full border-collapse">
-            <thead>
-              <tr>
-                <th class="py-4 px-6 bg-gray-lightest dark:bg-gray-darkest font-bold uppercase text-lg text-gray-dark dark:text-gray-200 border-b border-grey-light dark:border-grey-dark">chat</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($chats as $chat)
-              <tr class="hover:bg-gray-lighter">
-                <td class="py-4 px-6 border-b border-gray-light dark:border-gray-600">
-                  <a href="{{ route('chat.show',$chat->id) }}">
-                    <!-- 🔽 追加 -->
-                    <p class="text-left text-gray-800 dark:text-gray-200">{{$chat->user->name}}</p>
-                    <h3 class="text-left font-bold text-lg text-gray-800 dark:text-gray-200">{{$chat->chat}}</h3>
-                  </a>
-                  <div class="flex">
-                    <!-- 🔽 条件分岐でログインしているユーザが投稿したtweetのみ編集ボタンと削除ボタンが表示される -->
-                    @if ($chat->user_id === Auth::user()->id)
-                    <!-- 更新ボタン -->
-                    <form action="{{ route('chat.edit',$chat->id) }}" method="GET" class="text-left">
-                      @csrf
-                      <x-primary-button class="ml-3">
-                        <svg class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="gray">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
-                      </x-primary-button>
-                    </form>
-                    <!-- 削除ボタン -->
-                    <form action="{{ route('chat.destroy',$chat->id) }}" method="POST" class="text-left">
-                      @method('delete')
-                      @csrf
-                      <x-primary-button class="ml-3">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="gray">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                      </x-primary-button>
-                    </form>
-                    @endif
-                  </div>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</x-app-layout>
+        <style>
+            .other::before {
+                content: "";
+                position: absolute;
+                top: 90%;
+                left: -15px;
+                margin-top: -30px;
+                border: 5px solid transparent;
+                border-right: 15px solid #c7deff;
+            }
+            .self::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                margin-top: -15px;
+                border: 3px solid transparent;
+                border-left: 9px solid #c7deff;
+            }
+        </style>
+    </head>
+    <body class="w-4/5 md:w-3/5 lg:w-2/5 m-auto">
+        <h1 class="my-4 text-3xl font-bold">{{env('APP_NAME')}}</h1>
+        <ul>
+            @foreach ($chats as $chat)
+                <p class="text-xs @if($chat->user_id == Auth::user()->id) text-right @endif">{{$chat->created_at}} ＠{{$chat->user->name}}</p>
+                <li class="w-max mb-3 p-2 rounded-lg bg-blue-200 relative @if($chat->user_id == Auth::user()->id) self ml-auto @else other @endif">
+                    {{$chat->message}}
+                </li>
+            @endforeach
+        </ul>
 
+        <form class="my-4 py-2 px-4 rounded-lg bg-gray-300 text-sm flex flex-col md:flex-row flex-grow" action="{{ route('family_page.chat.store', ['family_page_id' => $family_page_id]) }}" method="POST">
+            @csrf
+            <input class="py-1 px-2 rounded text-center flex-initial" type="text" name="user_name" placeholder="UserName" maxlength="20" value="{{ Auth::user()->name }}" readonly>
+            <input class="mt-2 md:mt-0 md:ml-2 py-1 px-2 rounded flex-auto" type="text" name="message" placeholder="Input message." maxlength="200" autofocus required>
+            <button class="mt-2 md:mt-0 md:ml-2 py-1 px-2 rounded text-center bg-gray-500 text-white" type="submit">送信</button>
+        </form>
+    </body>
+</html>

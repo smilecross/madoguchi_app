@@ -33,5 +33,8 @@
     
             </main>
         </div>
+
+        {{-- @livewireScripts --}}
+        {{-- AlpineJS対応のため追記 --}}
     </body>
 </html>
