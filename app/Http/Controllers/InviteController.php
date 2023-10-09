@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\InvitationMail;
 use App\Models\Invite; 
-use App\Models\Invitation;
+use App\Mail\InvitationMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;

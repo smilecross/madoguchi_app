@@ -14,7 +14,7 @@ class InvitationMail extends Mailable
     public $invite_url;
     public $inviter;         // 招待を送信したユーザーの情報
     public $family_page_id;  // 招待に関連するファミリーページのID
-
+    public $companyName; 
     /**
      * Create a new message instance.
      * 
@@ -24,10 +24,11 @@ class InvitationMail extends Mailable
      */
     public function __construct($invite_url, $inviter, $family_page_id)
     {
-        $this->invite_url = 'https://madoguchi.sakura.ne.jp/project/invitation/accept/' ;
-        // $this->inviter = $inviter;
+        $this->invite_url = $invite_url;
+        $this->inviter = $inviter;
         $this->family_page_id = $family_page_id;
         $this->companyName = "LifeMoneyTech";
+
     }
 
     public function build()
