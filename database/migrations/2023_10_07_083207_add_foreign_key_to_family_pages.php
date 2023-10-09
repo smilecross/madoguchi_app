@@ -13,7 +13,7 @@ return new class extends Migration
     {
          Schema::table('family_pages', function (Blueprint $table) {
             $table->unsignedBigInteger('deceased_person_id')->after('id');  
-            $table->foreign('deceased_person_id')->references('id')->on('deceased_persons')->onDelete('cascade');
+            // $table->foreign('deceased_person_id')->references('id')->on('deceased_persons')->onDelete('cascade');
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('family_pages', function (Blueprint $table) {
-            $table->dropForeign(['deceased_person_id']);
+            // $table->dropForeign(['deceased_person_id']);
             $table->dropColumn('deceased_person_id');  // この行を追加
         });
     }
