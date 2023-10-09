@@ -19,8 +19,8 @@ import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
 
 // 新しいコンポーネント
-import DiagnosisForm from './components/DiagnosisForm.vue';
-app.component('diagnosis-form', DiagnosisForm);
+import DiagnosesForm from './components/DiagnosesForm.vue';
+app.component('diagnoses-form', DiagnosesForm);
 
 
 // import Alpine from 'alpinejs';

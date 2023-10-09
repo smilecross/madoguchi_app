@@ -41,6 +41,8 @@
           :modelValue="answers.lived_with_others" @update:modelValue="answers.lived_with_others = $event">
         </enum-select-component>
       </div>
+      <!-- 保存ボタン -->
+      <button @click="saveFirstCategory">次へ</button>
     </div>
 
     <!-- ... 2ページ目 -->
@@ -151,9 +153,11 @@
         </option>
       </select>
     </div>
-
+    <br>
   </div>
-  <button v-if="currentStep < 5" @click="nextStep">次へ</button>
+  
+  <!-- <button v-if="currentStep < 5" @click="nextStep">次へ</button> -->
+  
   <button v-else @click="showDiagnosisResults">やることリストを見る</button>
 
   <!-- 5ページ目終了後に表示するtodoリスト -->
@@ -163,6 +167,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import EnumSelectComponent from './EnumSelectComponent.vue';
 
 export default {
@@ -253,6 +258,19 @@ export default {
     };
   },
   methods: {
+    async saveFirstCategory() {
+      try {
+        // APIへのリクエストを行ってデータを保存
+        // await this.$axios.post('/diagnoses/store', this.answers);
+        await axios.post('/diagnoses/store', this.answers);
+
+        // 無事に保存されたら次のステップへ
+        this.nextStep();
+      } catch (error) {
+        console.error("データの保存に失敗しました:", error.response ? error.response.data : error.message);
+      }
+    },
+
     nextStep() {
       if (this.currentStep < 5) {
         this.currentStep++;
@@ -260,7 +278,7 @@ export default {
     },
     // 診断のIDをどこかのデータ変数 (例: this.diagnosisId) に保存している前提
     showDiagnosisResults() {
-      axios.post('/procedure/diagnosis/store', this.answers)
+       axios.post('/procedure/diagnoses/store', this.answers)
         .then(response => {
           const id = response.data.id;
           window.location.href = `/diagnosis/showResults/${id}`;

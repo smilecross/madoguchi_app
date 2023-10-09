@@ -18,9 +18,9 @@ class FamilyPage extends Model
         return $this->belongsTo(DeceasedPerson::class, 'deceased_person_id'); // 第2引数にはFamilyPageテーブルの外部キーカラム名を指定
     }
  
-    public function profileInfo()
+    public function DiagnosesInfo()
     {
-        return $this->hasOne(ProfileInfo::class);
+        return $this->hasOne(DiagnosesInfo::class);
     }
 
     public function jobAdminInfo()

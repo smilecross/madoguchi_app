@@ -38,7 +38,7 @@
                 <path stroke-linecap="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
                 </svg>
             </div>
-                <a href="{{ route('family_pages.diagnosis.start') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white ">必要な手続きを調べる</a>
+                <a href="{{ route('family_pages.diagnoses.start') }}" class="btn btn-primary mt-6 text-xl font-semibold text-gray-900 dark:text-white ">必要な手続きを調べる</a>
                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                 必要な手続きを調べるところから始めましょう。家族構成や職業などによって必要な手続きが異なります。
                 </p>

@@ -2,6 +2,7 @@
 
 @section('content')
 <div id="app">
-    <diagnosis-form></diagnosis-form>
-</div>
+    <diagnoses-form></diagnoses-form>
+   
 @endsection
+

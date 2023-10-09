@@ -9,8 +9,8 @@ use Carbon\Carbon;
 class ProfileInfo extends Model
 {
     use HasFactory;
-    protected $table = 'profile_infos';  // テーブル名を指定
-    protected $primaryKey = 'profile_id';  // 主キー名を指定（必要な場合）
+    protected $table = 'diagnoses_infos';  // テーブル名を指定
+    protected $primaryKey = 'diagnoses_id';  // 主キー名を指定（必要な場合）
     // 追加部分
     protected $fillable = [
         'family_page_id', 

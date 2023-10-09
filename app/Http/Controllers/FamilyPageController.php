@@ -30,8 +30,8 @@ class FamilyPageController extends Controller
     }
 
     // 診断スタート
-    public function startDiagnosis() {
-        return view('diagnosis.start');
+    public function startDiagnoses() {
+        return view('diagnoses.start');
     }
 
     public function show($id)
