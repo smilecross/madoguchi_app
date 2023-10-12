@@ -52,4 +52,9 @@ class User extends Authenticatable
   {
     return $this->belongsToMany(Chat::class)->withTimestamps();
   }
+
+  public function familyPages()
+    {
+        return $this->belongsToMany(FamilyPage::class);
+    }
 }

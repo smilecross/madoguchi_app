@@ -47,4 +47,9 @@ class FamilyPage extends Model
     {
         return $this->hasOne(OtherInfo::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
