@@ -41,6 +41,29 @@ class InviteController extends Controller
         return redirect()->back()->with('success', '招待を送信しました！');
     }
 
+    public function acceptInvitation($token)
+    {
+        \Log::info('Step 1: Checking the token...'); // ログ追加
+        $invite = Invite::where('token', $token)->first();
+
+        if (!$invite) {
+            return redirect('/')->withErrors(['招待は無効または期限切れです。']);
+        }
+
+        // ユーザーがログインしているか確認
+        if (!Auth::check()) {
+            // ユーザーがログインしていない場合、新規登録/ログインページにリダイレクト
+            return redirect()->route('register')->with('info', 'アカウントを作成またはログインしてください。');
+        }
+
+        // ログインしているユーザーにファミリーページへのアクセス権限を付与
+        $user = Auth::user();
+        $user->familyPages()->attach($invite->family_page_id); // ここはあなたのデータベースの設計に基づいて変更する必要があります
+
+        // ファミリーページにリダイレクト
+        return redirect()->route('family_pages.show', ['id' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
+    }
+
 
 
 }

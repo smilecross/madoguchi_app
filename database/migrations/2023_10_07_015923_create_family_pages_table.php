@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('family_pages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('deceased_person_id')->constrained()->onDelete('cascade');
+            // $table->foreignId('deceased_person_id')->constrained()->onDelete('cascade');
             $table->timestamps();   
             $table->softDeletes('deleted_at'); 
         });

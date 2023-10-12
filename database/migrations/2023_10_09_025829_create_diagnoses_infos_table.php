@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-    //     Schema::create('diagnoses_infos', function (Blueprint $table) {
-    //     $table->id();
-    //     $table->unsignedBigInteger('family_pages_id');
-    //     $table->date('birthday');
-    //     $table->string('address', 280);
-    //     $table->string('prefecture');
-    //     $table->string('is_household_head')->default('わからない');
-    //     $table->string('spouse_status')->default('わからない');
-    //     $table->string('has_dependent_children')->default('わからない');
-    //     $table->string('lived_with_others')->default('わからない');
+        Schema::create('diagnoses_infos', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('family_pages_id');
+        $table->date('birthday');
+        $table->string('address', 280);
+        $table->string('prefecture');
+        $table->string('is_household_head')->default('わからない');
+        $table->string('spouse_status')->default('わからない');
+        $table->string('has_dependent_children')->default('わからない');
+        $table->string('lived_with_others')->default('わからない');
 
-    //     $table->timestamps();
-    //     $table->softDeletes();
+        $table->timestamps();
+        $table->softDeletes();
 
-    //     $table->foreign('family_pages_id')->references('id')->on('family_pages')->onDelete('cascade');
-    // });
+        $table->foreign('family_pages_id')->references('id')->on('family_pages')->onDelete('cascade');
+    });
     }
 
     /**
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('diagnoses_infos');
+        Schema::dropIfExists('diagnoses_infos');
     }
 };

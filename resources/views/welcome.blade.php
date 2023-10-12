@@ -34,103 +34,25 @@
             @endif
 
         
-                <div class="bg-white p-6 rounded-lg"> <!-- 説明部分の背景を白にし、少し余白を追加 -->
-                    <div>
-                        <div class="text-center mb-12">
-                            <p>相続手続きを家族で</p>
-                            <p class="font-bold text-3xl">かぞくの窓口</p>
-                        </div>
-                        <br>
+                <div class="flex justify-center items-center h-screen w-full md:w-1/2 mx-auto"> 
+                    <div class="bg-white p-6 rounded-lg "> 
                         <div>
-                        <p>「かぞくの窓口」は、ご身内を亡くされた遺族の方が相続手続きを行うためのサポートツールです。
-                        <br>
-                        <br>
-                        私たちの人生で身内の死や相続の手続きは何度も経験することではありません。そのため、多くの複雑な手続きや決断が、家族との絆を試すことも少なくありません。
-                        <br>
-                        <br>
-                        さまざまな手続きを通して、家族と過ごした”あの時”の思い出を、時にはチャットで、時には食事を共にしながら、懐かしく語り合う機会になればと思っています。</p>
-                        </div>
-                    </div>    
-                </div>   
-                <!-- 新規登録ボタン -->
-                {{-- <button id="showRegisterForm">新規登録</button> --}}
-
-                <!-- 新規登録フォーム (初期状態では非表示) -->
-                {{-- <form id="registerForm" class="hidden" method="POST" action="{{ route('register') }}">
-                @csrf --}}
-
-                <!-- Name -->
-                {{-- <div>
-                    <label for="name">Name:</label>
-                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
-                    @error('name')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-                </div> --}}
-
-                <!-- Email Address -->
-                {{-- <div>
-                    <label for="email">Email:</label>
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
-                    @error('email')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-                </div> --}}
-
-                <!-- Password -->
-                {{-- <div>
-                    <label for="password">Password:</label>
-                    <input id="password" type="password" name="password" required autocomplete="new-password">
-                    @error('password')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
-                </div> --}}
-
-                <!-- Confirm Password -->
-                {{-- <div>
-                    <label for="password_confirmation">Confirm Password:</label>
-                    <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">
-                    @error('password_confirmation')
-                    <span class="text-red-600">{{ $message }}</span>
-                    @enderror
+                            <div class="text-center mb-12">
+                                <p>相続手続きを家族で</p>
+                                <p class="font-bold text-3xl">かぞくの窓口</p>
+                            </div>
+                            <br>
+                            <div>
+                                <p>「かぞくの窓口」は、ご身内を亡くされた遺族の方が相続手続きを行うためのサポートツールです。</p>
+                                <br>
+                                <p>私たちの人生で身内の死や相続の手続きは何度も経験することではありません。そのため、多くの複雑な手続きや決断が、家族との絆を試すことも少なくありません。</p>
+                                <br>
+                                <p>さまざまな手続きを通して、家族と過ごした”あの時”の思い出を、時にはチャットで、時には食事を共にしながら、懐かしく語り合う機会になればと思っています。</p>
+                            </div>
+                        </div>    
+                    </div>   
                 </div>
 
-                <div>
-                    <button type="submit">Register</button>
-                </div>
-                </form>
-                </div> --}}
-                <!-- ログインボタン -->
-                {{-- <div>
-                <button id="showLoginForm">ログイン</button> --}}
-
-                <!-- ログインフォーム (初期状態では非表示) -->
-                {{-- <form id="loginForm" class="hidden" method="POST" action="{{ route('login') }}">
-                    @csrf --}}
-
-                    <!-- Email Address -->
-                    {{-- <div>
-                        <label for="email">Email:</label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
-                        @error('email')
-                        <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
-                    <!-- Password -->
-                    {{-- <div>
-                        <label for="password">Password:</label>
-                        <input id="password" type="password" name="password" required autocomplete="current-password">
-                        @error('password')
-                        <span class="text-red-600">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <button type="submit">Log In</button>
-                    </div>
-                    </form>
-                    </div> --}}
                    
 
     <!-- 以下はスクリプト部分 -->
@@ -138,13 +60,13 @@
         document.getElementById('showRegisterForm').addEventListener('click', function() {
             document.getElementById('registerForm').classList.toggle('hidden');
         });
-    </script>
+    </script> 
 
     <script>
         document.getElementById('showLoginForm').addEventListener('click', function() {
             document.getElementById('loginForm').classList.toggle('hidden');
         });
-    </script> --}}
+    </script>  --}}
 
     <!-- 以前提供したスタイルを再度利用 -->
     <style>
