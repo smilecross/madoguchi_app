@@ -61,7 +61,9 @@ class InviteController extends Controller
         $user->familyPages()->attach($invite->family_page_id); // ここはあなたのデータベースの設計に基づいて変更する必要があります
 
         // ファミリーページにリダイレクト
-        return redirect()->route('family_pages.show', ['id' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
+        // return redirect()->route('family_pages.show', ['id' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
+        return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
+
     }
 
 
