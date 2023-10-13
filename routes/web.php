@@ -9,7 +9,7 @@ use App\Http\Controllers\InviteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ManualTaskController;
-
+use App\Models\User;
 
 
 // use App\Http\Controllers\FavoriteController;
@@ -74,6 +74,13 @@ Route::get('/dashboard', function () {
 
 });
 
+  //ユーザーの確認
+  Route::get('/check-relation', function () {
+      $user = User::find(3);  // IDが3のユーザーを取得します
+      $familyPages = $user->familyPages;  // ユーザーに関連する家族ページを取得します
+      
+      return view('relation-check',  ['familyPages' => $familyPages, 'user' => $user]);
+  });
 
   // 招待の受け入れ
   Route::get('invitation/accept/{token}', [InviteController::class, 'acceptInvitation'])->name('invitation.accept');

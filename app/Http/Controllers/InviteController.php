@@ -53,6 +53,7 @@ class InviteController extends Controller
         // ユーザーがログインしているか確認
         if (!Auth::check()) {
             // ユーザーがログインしていない場合、新規登録/ログインページにリダイレクト
+            session(['invite_token' => $token]);
             return redirect()->route('register')->with('info', 'アカウントを作成またはログインしてください。');
         }
 
