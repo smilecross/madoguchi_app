@@ -15,7 +15,9 @@
         <p>以下のリンクをクリックして、手続きページにアクセスしてください。</p>
         
         {{-- ここで直接ファミリーページのIDをURLに埋め込みます --}}
-        <a href="{{ url('/invitation/accept/' . $token)  }}" style="background-color: #3490dc; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 3px;">招待リンク</a>
+        <a href="{{ url($invite_url) }}" style="background-color: #3490dc; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 3px;">招待リンク</a>
+
+        {{-- <a href="{{ url('/invitation/accept/' . $token)  }}" style="background-color: #3490dc; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 3px;">招待リンク</a> --}}
         
         <p>このリンクは一定期間のみ有効ですので、お早めにご利用ください。</p>
         <p>ご不明点や問題が発生した場合は、{{ $companyName }}までご連絡ください。</p>
