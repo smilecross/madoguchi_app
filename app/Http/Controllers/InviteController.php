@@ -32,7 +32,6 @@ class InviteController extends Controller
         $invite->save();
 
         $inviteUrl = '/invitation/accept/' . $invite->token;
-        \Log::info('Generated Invite URL:', ['url' => $inviteUrl]);
         $companyName = 'LifeMoneyTech かぞくの窓口';  
         $inviter = Auth::user(); // これが招待を送った人
 
@@ -43,7 +42,6 @@ class InviteController extends Controller
 
     public function acceptInvitation($token)
     {
-        \Log::info('Step 1: Checking the token...'); // ログ追加
         $invite = Invite::where('token', $token)->first();
 
         if (!$invite) {
@@ -59,20 +57,23 @@ class InviteController extends Controller
 
         // ログインしているユーザーにファミリーページへのアクセス権限を付与
         $user = Auth::user();
+         
         $user->familyPages()->attach($invite->family_page_id); // ここはあなたのデータベースの設計に基づいて変更する必要があります
 
         // ファミリーページにリダイレクト
         // return redirect()->route('family_pages.show', ['id' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
-        return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
+        return redirect()->route('family_pages.show', ['id' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
 
     }
 
          public function handleUserInvitation(User $user): bool
         {
+            
             $inviteToken = session('invite_token');
             if ($inviteToken) {
                 $invite = Invite::where('token', $inviteToken)->first();
                 if ($invite) {
+                    
                     $user->familyPages()->attach($invite->family_page_id);
                     $invite->delete();
                     session()->forget('invite_token');  // セッションからトークンを削除

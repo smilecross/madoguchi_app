@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password),  
         ]);
 
         event(new Registered($user));
@@ -48,10 +48,21 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         // 招待処理
-        // if($this->inviteController->handleUserInvitation($user)) {
-        //     return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])
-        //                      ->with('success', 'ファミリーページに参加しました！');
-        // }
+        $inviteToken = session('invite_token'); // セッションから招待トークンを取得
+        
+        if ($inviteToken) {
+            $invite = Invite::where('token', $inviteToken)->first(); // DBから招待を検索
+            
+            if ($invite) {
+                $user->familyPages()->attach($invite->family_page_id); // ユーザーをファミリーページに紐付け
+                
+                $invite->delete(); // 使用済みの招待を削除
+                session()->forget('invite_token');  // セッションからトークンを削除
+
+                return redirect()->route('family_pages.show', ['id' => $invite->family_page_id])
+                                ->with('success', 'ファミリーページに参加しました！');
+            }
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }
