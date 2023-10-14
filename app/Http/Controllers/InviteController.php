@@ -31,7 +31,7 @@ class InviteController extends Controller
         $invite->family_page_id = session('family_page_id', null);
         $invite->save();
 
-        $inviteUrl = 'https://madoguchi.sakura.ne.jp/project/invitation/accept/' . $invite->token;
+        $inviteUrl = '/project/invitation/accept/' . $invite->token;
         \Log::info('Generated Invite URL:', ['url' => $inviteUrl]);
         $companyName = 'LifeMoneyTech かぞくの窓口';  
         $inviter = Auth::user(); // これが招待を送った人
@@ -66,6 +66,23 @@ class InviteController extends Controller
         return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])->with('success', 'ファミリーページに参加しました！');
 
     }
+
+         public function handleUserInvitation(User $user): bool
+        {
+            $inviteToken = session('invite_token');
+            if ($inviteToken) {
+                $invite = Invite::where('token', $inviteToken)->first();
+                if ($invite) {
+                    $user->familyPages()->attach($invite->family_page_id);
+                    $invite->delete();
+                    session()->forget('invite_token');  // セッションからトークンを削除
+
+                    return true;  // 招待が正常に処理された
+                }
+            }
+
+            return false;  // 招待トークンがない、または招待が正常に処理されなかった
+        }
 
 
 

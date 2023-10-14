@@ -34,10 +34,19 @@ class FamilyPageController extends Controller
         return view('diagnoses.start');
     }
 
-    public function show(FamilyPage $family_page)
+    public function show($id)
     {
+        $family_page = FamilyPage::find($id);
+
+        if (!$family_page) {
+            return redirect()->route('dashboard')
+                ->with('Oops!!', 'ファミリーページがまだ作成されていません。');
+        }
+
+    // ある条件を満たしているかどうかのチェックロジックを$conditionに格納
+        $condition = count($family_page->some_related_models ?? []) > 0; 
+
         return view('family_pages.show', ['familyPage' => $family_page]);
     }
-
 
 }

@@ -32,7 +32,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('deceased_persons', DeceasedPersonController::class); //相続手続きページ生成
-    Route::resource('family_pages', FamilyPageController::class);
+    Route::resource('family_pages', FamilyPageController::class)->except(['show']); // showを除いたリソースルート
+    Route::get('family_pages/{id}', [FamilyPageController::class, 'show'])->name('family_pages.show');
     
     Route::name('family_pages.chat.index')->get('family_pages/{family_page_id}/chat', [ChatController::class, 'index']); //一覧
     Route::name('family_pages.chat.store')->post('family_pages/{family_page_id}/chat', [ChatController::class, 'store']); //投稿

@@ -107,7 +107,7 @@
 </div>
 <div class="w-full md:w-1/4 mx-auto text-center">
         @if(session('family_page_id'))
-            <a href="{{ route('family_pages.show', session('family_page_id')) }}" class="block mt-4 mb-4 text-center bg-amber-100 px-4 py-2 w-full md:w-2/3 mx-auto rounded">ファミリーページに戻る</a>
+            <a href="{{ route('family_pages.show', session('family_page_id')) }}" class="block mt-4 mb-4 text-center bg-amber-100 px-4 py-2 mx-auto rounded">ファミリーページに戻る</a>
         @endif
     </div>
 @endsection

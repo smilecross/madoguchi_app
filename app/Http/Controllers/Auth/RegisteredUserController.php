@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Invite; 
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -45,6 +46,12 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        // 招待処理
+        if($this->inviteController->handleUserInvitation($user)) {
+            return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])
+                             ->with('success', 'ファミリーページに参加しました！');
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

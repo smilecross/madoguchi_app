@@ -39,12 +39,15 @@ class DeceasedPersonController extends Controller
         // DeceasedPersonの作成後にFamilyPageも作成
         $familyPage = new FamilyPage();
         $familyPage->deceased_person_id = $deceasedPerson->id;
+        // ここでログインユーザーのIDをFamilyPageに関連付ける
+        $familyPage->user_id = auth()->id(); 
         // 必要に応じて他のデータもセット
         $familyPage->save();
 
         // 保存した FamilyPage の ID をセッションに保存
         session(['family_page_id' => $familyPage->id]);
-
+        // ログインユーザーと新しいFamilyPageとのリレーションを作成
+         auth()->user()->familyPages()->attach($familyPage->id);
         //手続きページの一覧画面へリダイレクト
         return redirect()->route('family_pages.show', $familyPage->id);
     }
