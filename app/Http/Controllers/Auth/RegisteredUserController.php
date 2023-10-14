@@ -48,10 +48,10 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         // 招待処理
-        if($this->inviteController->handleUserInvitation($user)) {
-            return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])
-                             ->with('success', 'ファミリーページに参加しました！');
-        }
+        // if($this->inviteController->handleUserInvitation($user)) {
+        //     return redirect()->route('family_pages.show', ['family_page' => $invite->family_page_id])
+        //                      ->with('success', 'ファミリーページに参加しました！');
+        // }
 
         return redirect(RouteServiceProvider::HOME);
     }
