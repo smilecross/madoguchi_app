@@ -31,7 +31,7 @@ class InviteController extends Controller
         $invite->family_page_id = session('family_page_id', null);
         $invite->save();
 
-        $inviteUrl = '/project/invitation/accept/' . $invite->token;
+        $inviteUrl = '/invitation/accept/' . $invite->token;
         \Log::info('Generated Invite URL:', ['url' => $inviteUrl]);
         $companyName = 'LifeMoneyTech かぞくの窓口';  
         $inviter = Auth::user(); // これが招待を送った人
